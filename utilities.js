@@ -43,7 +43,7 @@ function getFlags(args = []) {
             });
         }
     }
-    // console.log('flags', flags)
+
     return flags;
 }
 
@@ -56,7 +56,6 @@ function getFlags(args = []) {
 function validateFlags(command, flags) {
     if (Array.isArray(flags)) {
         return flags.every(ele => {
-            // console.log('Validating', command, ele, commandsMap[command][ele.flag])
             return commandsMap[command][ele.flag]
         });
     }
@@ -69,14 +68,13 @@ function validateFlags(command, flags) {
  * the same as  MM-DD-YYYY.
 */
 function validateDate(arg) {
-    console.log('Validating date',  moment(arg, "MM-DD-YYYY"));
     return moment(arg, "MM-DD-YYYY").isValid();
 }
 
 function formatDate(arg){
     const date = moment(arg, "MM-DD-YYYY");
     const formated = date.format("MMMM DD, YYYY");
-    console.log('Date', date)
+
     return {
         date,
         formated

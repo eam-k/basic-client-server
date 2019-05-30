@@ -11,24 +11,12 @@ function dateMiddleware(req, res, next) {
         POST: 'body',
         GET: 'query'
     }
-    console.log(req.method)
+    
     if(selector[req.method]){
         req.name = req[selector[req.method]].name
         req.lastname = req[selector[req.method]].lastname
         date = moment(req[selector[req.method]].birthday);
     }
-
-    // if (req.query && req.query.birthday) {
-    //     req.name = req.query.name;
-    //     req.lastname = req.query.lastname;
-    //     date = moment(req.query.birthday);
-    // }
-
-    // if(req.body && req.body.birthday){
-    //     req.name = req.body.name;
-    //     req.lastname = req.body.lastname;
-    //     date = moment(req.body.birthday);
-    // }
 
     req.validDate = validateDate(date);
     req.currentDate = moment();
